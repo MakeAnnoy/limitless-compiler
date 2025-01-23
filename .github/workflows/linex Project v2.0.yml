@@ -35,7 +35,7 @@ on:
         type: string
       kernel-url:
         description: 'Kernel-url'
-        default: 'https://github.com/FirmanBell/ksu_xiaomi_platina.git'
+        default: 'https://github.com/MakeAnnoy/Loneliness_kernel_xiaomi_platina.git'
         required: true
         type: string
       kernel-branch:
