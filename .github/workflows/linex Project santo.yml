@@ -1,5 +1,5 @@
 # linex Project
-name: linex Project Compiler v2.0
+name: linex Project Compiler Santo
 on:
   workflow_dispatch:
     inputs:
