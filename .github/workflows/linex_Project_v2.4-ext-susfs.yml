@@ -117,9 +117,9 @@ jobs:
             if [ ${{ inputs.aosp-clang }} == "10" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/llvm-r399163b/clang-r399163.tar.gz
             elif [ ${{ inputs.aosp-clang }} == "11" ]; then
-                aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/tags/android-11.0.0_r46/clang-r383902b1.tar.gz
+                aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/llvm-r416183/clang-r399163b.tar.gz
             elif [ ${{ inputs.aosp-clang }} == "12" ]; then
-                aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12-release/clang-r416183b1.tar.gz
+                aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/llvm-r416183/clang-r416183.tar.gz
             elif [ ${{ inputs.aosp-clang }} == "13" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android13-release/clang-r450784d.tar.gz
             elif [ ${{ inputs.aosp-clang }} == "14" ]; then
