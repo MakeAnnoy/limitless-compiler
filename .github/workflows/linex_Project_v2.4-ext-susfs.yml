@@ -132,6 +132,8 @@ jobs:
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r547379.tar.gz          
             elif [ ${{ inputs.aosp-clang }} == "21" ]; then
                 aria2c -o aosp-clang.tar.gz https://github.com/ZyCromerZ/Clang/releases/download/21.0.0git-20250419-release/Clang-21.0.0git-20250419.tar.gz
+            elif [ ${{ inputs.aosp-clang }} == "prelud" ]; then
+                aria2c -o aosp-clang.tar.gz https://gitlab.com/jjpprrrr/prelude-clang/-/archive/master/prelude-clang-master.tar.gz
             elif [ ${{ inputs.aosp-clang }} != false ]; then
                 aria2c -o aosp-clang.tar.gz ${{ inputs.aosp-clang }}
             fi
