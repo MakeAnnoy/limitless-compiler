@@ -1,4 +1,4 @@
-# linex Project
+# lolipop Project
 name: linext Compiler v2.4-ext-susfs
 on:
   workflow_dispatch:
@@ -79,7 +79,7 @@ jobs:
          echo "kernel-config: ${{ inputs.kernel-config }}"
          echo "kernelsu: ${{ inputs.kernelsu }}"
          echo "disable-lto: ${{ inputs.disable-lto }}"
-         echo "linex Project"
+         echo "lolipop Project"
     - name: Checkout
       uses: actions/checkout@v4
     - name: Setup Packages
