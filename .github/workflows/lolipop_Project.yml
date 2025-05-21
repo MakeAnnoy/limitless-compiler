@@ -1,5 +1,5 @@
 # lolipop Project
-name: lolipop Compiler v2.4-ext-susfs
+name: lolipop Compiler
 on:
   workflow_dispatch:
     inputs:
