@@ -10,7 +10,7 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.4.302-Loneliness'
+        default: '4.4.302-Loneliness[nxt]'
         required: true
         type: string
       compiler:
@@ -25,7 +25,7 @@ on:
         type: string
       kernel-url:
         description: 'Kernel-url'
-        default: 'https://github.com/FirmanBell/Loneliness.git'
+        default: 'https://github.com/FirmanBell/Loneliness_nxt.git'
         required: true
         type: string
       kernel-branch:
