@@ -177,7 +177,9 @@ jobs:
          rm -rf KernelSU
          if [ ${{ inputs.kernelsu }} == ksu ]; then
             curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.7.6
-         elif [ ${{ inputs.kernelsu }} == next ]; then
+         elif [ ${{ inputs.kernelsu }} == next ]; then   
+            curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -
+         elif [ ${{ inputs.kernelsu }} == nextdev ]; then
             curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next
          elif [ ${{ inputs.kernelsu }} == susfs ]; then
             curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs        
