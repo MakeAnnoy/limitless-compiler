@@ -124,6 +124,8 @@ jobs:
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android13-release/clang-r450784d.tar.gz
             elif [ ${{ inputs.aosp-clang }} == "14" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
+            elif [ ${{ inputs.aosp-clang }} == "17" ]; then
+                aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
             elif [ ${{ inputs.aosp-clang }} == "18" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r522817.tar.gz
             elif [ ${{ inputs.aosp-clang }} == "19" ]; then
@@ -131,7 +133,7 @@ jobs:
             elif [ ${{ inputs.aosp-clang }} == "20" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r547379.tar.gz          
             elif [ ${{ inputs.aosp-clang }} == "21" ]; then
-                aria2c -o aosp-clang.tar.gz https://github.com/ZyCromerZ/Clang/releases/download/21.0.0git-20250525-release/Clang-21.0.0git-20250525.tar.gz          
+                aria2c -o aosp-clang.tar.gz https://github.com/ZyCromerZ/Clang/releases/download/21.0.0git-20250704-release/Clang-21.0.0git-20250704.tar.gz          
             elif [ ${{ inputs.aosp-clang }} != false ]; then
                 aria2c -o aosp-clang.tar.gz ${{ inputs.aosp-clang }}
             fi
