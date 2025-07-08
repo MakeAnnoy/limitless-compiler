@@ -1,5 +1,5 @@
-# lolipop Project
-name: lolipop Compiler
+# linext Project
+name: linext Compiler v2.4-ext-susfs
 on:
   workflow_dispatch:
     inputs:
@@ -10,7 +10,7 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.4.302-Loneliness'
+        default: '4.4.302-Loneliness[nxt]'
         required: true
         type: string
       compiler:
@@ -25,7 +25,7 @@ on:
         type: string
       kernel-url:
         description: 'Kernel-url'
-        default: 'https://github.com/FirmanBell/Loneliness.git'
+        default: 'https://github.com/FirmanBell/Loneliness_nxt.git'
         required: true
         type: string
       kernel-branch:
@@ -54,7 +54,7 @@ on:
         required: true
         type: string
 jobs:
-  lolipop-24:
+  linext-24:
     runs-on: ${{ inputs.ubuntu }}
     steps:
     - name: Checkin
@@ -79,7 +79,7 @@ jobs:
          echo "kernel-config: ${{ inputs.kernel-config }}"
          echo "kernelsu: ${{ inputs.kernelsu }}"
          echo "disable-lto: ${{ inputs.disable-lto }}"
-         echo "lolipop Project"
+         echo "linext Project"
     - name: Checkout
       uses: actions/checkout@v4
     - name: Setup Packages
@@ -122,7 +122,7 @@ jobs:
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/llvm-r416183/clang-r416183.tar.gz
             elif [ ${{ inputs.aosp-clang }} == "13" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android13-release/clang-r450784d.tar.gz
-            elif [ ${{ inputs.aosp-clang }} == "14" ]; then
+            elif [ ${{ inputs.aosp-clang }} == "17" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
             elif [ ${{ inputs.aosp-clang }} == "18" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r522817.tar.gz
@@ -131,7 +131,7 @@ jobs:
             elif [ ${{ inputs.aosp-clang }} == "20" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r547379.tar.gz          
             elif [ ${{ inputs.aosp-clang }} == "21" ]; then
-                aria2c -o aosp-clang.tar.gz https://github.com/ZyCromerZ/Clang/releases/download/21.0.0git-20250419-release/Clang-21.0.0git-20250419.tar.gz          
+                aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/0998f421320ae02fddabec8a78b91bf7620159f6/clang-r563880.tar.gz         
             elif [ ${{ inputs.aosp-clang }} != false ]; then
                 aria2c -o aosp-clang.tar.gz ${{ inputs.aosp-clang }}
             fi
@@ -177,12 +177,8 @@ jobs:
          rm -rf KernelSU
          if [ ${{ inputs.kernelsu }} == ksu ]; then
             curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.7.6
-         elif [ ${{ inputs.kernelsu }} == next ]; then
-            curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next
-         elif [ ${{ inputs.kernelsu }} == susfs ]; then
-            curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs        
-         elif [ ${{ inputs.kernelsu }} == dev ]; then   
-            curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs-dev
+         elif [ ${{ inputs.kernelsu }} == next ]; then   
+            curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -
          elif [ ${{ inputs.kernelsu }} == 3 ]; then
             curl -LSs "https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/refs/heads/next-time/kernel/setup.sh" | bash -s next-time
          elif [ ${{ inputs.kernelsu }} != false ]; then
@@ -204,7 +200,7 @@ jobs:
             export PATH=$HOME/clang/bin:$HOME/gcc-64/bin:$HOME/gcc-32/bin:$PATH
          fi
          export KBUILD_BUILD_USER="Lolipop"
-         export KBUILD_BUILD_HOST="Yes_aja"
+         export KBUILD_BUILD_HOST="side"
          if [ ${{ inputs.compiler }} == gcc ]; then
             COMMAND+=" CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CROSS_COMPILE_COMPAT=arm-linux-gnueabi-"
          elif [ ${{ inputs.compiler }} == clang ] && [ ${{ inputs.aosp-clang }} == false ]; then
