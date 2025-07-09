@@ -10,7 +10,7 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.4.302-Loneliness[nxt]'
+        default: '4.4.302-Loneliness[nxt-susfs4ksu]'
         required: true
         type: string
       compiler:
@@ -20,17 +20,17 @@ on:
         type: string
       aosp-clang:
         description: 'Clang | false for disable'
-        default: '20'
+        default: '21'
         required: true
         type: string
       kernel-url:
         description: 'Kernel-url'
-        default: 'https://github.com/FirmanBell/Loneliness_nxt.git'
+        default: 'https://github.com/FirmanBell/Loneliness_susfs4ksu.git'
         required: true
         type: string
       kernel-branch:
         description: 'Kernel-branch'
-        default: 'main'
+        default: 'new'
         required: true
         type: string
       kernel-config:
@@ -40,7 +40,7 @@ on:
         type: string
       kernelsu:
         description: 'KernelSU | false for disable'
-        default: 'next'
+        default: '3'
         required: true
         type: string
       disable-lto:
@@ -199,8 +199,8 @@ jobs:
          else
             export PATH=$HOME/clang/bin:$HOME/gcc-64/bin:$HOME/gcc-32/bin:$PATH
          fi
-         export KBUILD_BUILD_USER="Lolipop"
-         export KBUILD_BUILD_HOST="Yes_aja"
+         export KBUILD_BUILD_USER="lolipop"
+         export KBUILD_BUILD_HOST="yes_aja"
          if [ ${{ inputs.compiler }} == gcc ]; then
             COMMAND+=" CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CROSS_COMPILE_COMPAT=arm-linux-gnueabi-"
          elif [ ${{ inputs.compiler }} == clang ] && [ ${{ inputs.aosp-clang }} == false ]; then
