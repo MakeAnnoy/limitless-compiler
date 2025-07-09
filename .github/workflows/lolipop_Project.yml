@@ -180,7 +180,7 @@ jobs:
          elif [ ${{ inputs.kernelsu }} == next ]; then   
             curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -
          elif [ ${{ inputs.kernelsu }} == 3 ]; then
-            curl -LSs "https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/refs/heads/next-susfs/kernel/setup.sh" | bash -s next-susfs
+            curl -LSs "https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/refs/heads/next-time-v1.5.5/kernel/setup.sh" | bash -s next-time-v1.5.5
          elif [ ${{ inputs.kernelsu }} != false ]; then
             ${{ inputs.kernelsu }}
          fi
