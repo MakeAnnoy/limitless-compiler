@@ -1,5 +1,5 @@
 # linext Project
-name: linext Compiler v2.4-ext-susfs
+name: linext Compiler v2.4-ext
 on:
   workflow_dispatch:
     inputs:
@@ -20,7 +20,7 @@ on:
         type: string
       aosp-clang:
         description: 'Clang | false for disable'
-        default: '20'
+        default: '21'
         required: true
         type: string
       kernel-url:
