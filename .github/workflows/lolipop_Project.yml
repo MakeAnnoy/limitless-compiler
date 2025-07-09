@@ -1,5 +1,5 @@
 # linext Project
-name: linext Compiler v2.4-ext-susfs
+name: linext Compiler susfs
 on:
   workflow_dispatch:
     inputs:
