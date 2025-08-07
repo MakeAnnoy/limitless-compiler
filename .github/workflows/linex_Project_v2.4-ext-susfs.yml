@@ -10,22 +10,22 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.4.302-Loneliness[nxt]'
+        default: '4.9-santoni'
         required: true
         type: string
       compiler:
         description: 'Compiler | gcc|clang|llvm'
-        default: 'clang'
+        default: 'gcc'
         required: true
         type: string
       aosp-clang:
         description: 'Clang | false for disable'
-        default: '21'
+        default: '11'
         required: true
         type: string
       kernel-url:
         description: 'Kernel-url'
-        default: 'https://github.com/FirmanBell/Loneliness_nxt.git'
+        default: 'https://github.com/MakeAnnoy/L_check_msm-4.9.git'
         required: true
         type: string
       kernel-branch:
@@ -35,7 +35,7 @@ on:
         type: string
       kernel-config:
         description: 'Kernel-config'
-        default: 'platina_defconfig'
+        default: 'santoni_treble_defconfig'
         required: true
         type: string
       kernelsu:
@@ -50,7 +50,7 @@ on:
         type: string
       AK3:
         description: 'AnyKernel3'
-        default: 'https://github.com/FirmanBell/AnyKernel3.git'
+        default: 'https://github.com/MakeAnnoy/AnyKernel3.git'
         required: true
         type: string
 jobs:
