@@ -199,8 +199,8 @@ jobs:
          else
             export PATH=$HOME/clang/bin:$HOME/gcc-64/bin:$HOME/gcc-32/bin:$PATH
          fi
-         export KBUILD_BUILD_USER="lolipop"
-         export KBUILD_BUILD_HOST="yes_aja"
+         export KBUILD_BUILD_USER="dark"
+         export KBUILD_BUILD_HOST="side"
          if [ ${{ inputs.compiler }} == gcc ]; then
             COMMAND+=" CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CROSS_COMPILE_COMPAT=arm-linux-gnueabi-"
          elif [ ${{ inputs.compiler }} == clang ] && [ ${{ inputs.aosp-clang }} == false ]; then
