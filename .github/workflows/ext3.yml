@@ -1,4 +1,4 @@
-KernelSU-Nexttect
+# Annoy Project
 name: ext3
 on:
   workflow_dispatch:
