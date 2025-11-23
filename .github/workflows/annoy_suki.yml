@@ -1,5 +1,5 @@
 # Annoy Project
-name: Limitless Compiler ext
+name: suki ext
 on:
   workflow_dispatch:
     inputs:
