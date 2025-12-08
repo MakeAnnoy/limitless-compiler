@@ -14,8 +14,8 @@ on:
         required: true
         type: string
       compiler:
-        description: 'Compiler | gcc|clang|llvm'
-        default: 'gcc'
+        description: 'Compiler | gcc|gcc10|clang|llvm'
+        default: 'gcc10'
         required: true
         type: string
       aosp-clang:
@@ -110,6 +110,39 @@ jobs:
             aria2c -o gcc-arm.tar.gz https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/4d16d93f49c2b5ecdd0f12c38d194835dd595603.tar.gz
             tar -C $HOME/gcc-32 -zxf gcc-arm.tar.gz
          fi
+    - name: Setup GCC 10.1.0
+      run: |
+         echo "Building GCC 10.1.0..."
+         cd $HOME
+
+         sudo apt-get install -y build-essential flex bison texinfo libgmp-dev libmpfr-dev libmpc-dev zlib1g-dev
+
+         wget https://ftp.gnu.org/gnu/gcc/gcc-10.1.0/gcc-10.1.0.tar.xz
+         tar -xf gcc-10.1.0.tar.xz
+
+         cd gcc-10.1.0
+         ./contrib/download_prerequisites
+
+         mkdir build-gcc
+         cd build-gcc
+
+         ../configure \
+           --prefix=/opt/gcc-10.1 \
+           --enable-languages=c,c++ \
+           --disable-multilib \
+           --enable-lto \
+           --disable-bootstrap \
+           --program-suffix=-10.1
+
+         make -j$(nproc)
+         sudo make install
+
+         echo "export PATH=/opt/gcc-10.1/bin:\$PATH" >> $GITHUB_ENV
+         echo "GCC10=/opt/gcc-10.1/bin/gcc-10.1" >> $GITHUB_ENV
+         echo "GPP10=/opt/gcc-10.1/bin/g++-10.1" >> $GITHUB_ENV
+
+         gcc-10.1 --version || true
+
     - name: Setup Clang
       run: |
          if [ ${{ inputs.aosp-clang }} == false ]; then
@@ -212,6 +245,10 @@ jobs:
          export KBUILD_BUILD_HOST="side"
          if [ ${{ inputs.compiler }} == gcc ]; then
             COMMAND+=" CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CROSS_COMPILE_COMPAT=arm-linux-gnueabi-"
+         elif [ ${{ inputs.compiler }} == gcc10 ]; then
+            export CC=$GCC10
+            export CXX=$GPP10
+            COMMAND+=" CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CROSS_COMPILE_COMPAT=arm-linux-gnueabi- CC=$GCC10"
          elif [ ${{ inputs.compiler }} == clang ] && [ ${{ inputs.aosp-clang }} == false ]; then
             COMMAND+=" CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CROSS_COMPILE_COMPAT=arm-linux-gnueabi- CC=clang"
          elif [ ${{ inputs.compiler }} == clang ] && [ ${{ inputs.aosp-clang }} != false ]; then
