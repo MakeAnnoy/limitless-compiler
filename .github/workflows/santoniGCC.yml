@@ -1,5 +1,5 @@
 # Annoy Project
-name: santoni
+name: santoniGCC
 on:
   workflow_dispatch:
     inputs:
