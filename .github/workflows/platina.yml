@@ -1,5 +1,5 @@
 # Annoy Project
-name: Limitless ext
+name: platina
 on:
   workflow_dispatch:
     inputs:
@@ -30,7 +30,7 @@ on:
         type: string
       kernel-branch:
         description: 'Kernel-branch'
-        default: 'main'
+        default: '157'
         required: true
         type: string
       kernel-config:
@@ -40,7 +40,7 @@ on:
         type: string
       kernelsu:
         description: 'KernelSU | false for disable'
-        default: '3'
+        default: 'q'
         required: true
         type: string
       disable-lto:
@@ -184,14 +184,12 @@ jobs:
             curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s v1.1.1
          elif [ ${{ inputs.kernelsu }} == 3 ]; then
             curl -LSs "https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/refs/heads/next-time/kernel/setup.sh" | bash -s next-time-susfs
-         elif [ ${{ inputs.kernelsu }} == p ]; then
-            curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/next-sus/kernel/setup.sh" | bash -s next-sus
          elif [ ${{ inputs.kernelsu }} == q ]; then
             curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/ngawur/kernel/setup.sh" | bash -s ngawur
          elif [ ${{ inputs.kernelsu }} != false ]; then
             ${{ inputs.kernelsu }}
          fi
-    - name: Compile
+    - name: Compiler
       run: |        
          mkdir -p -v out
          if [ ${{ inputs.kernel-url }} != false ]; then
