@@ -189,7 +189,7 @@ jobs:
          elif [ ${{ inputs.kernelsu }} != false ]; then
             ${{ inputs.kernelsu }}
          fi
-    - name: Compiler
+    - name: Compile
       run: |        
          mkdir -p -v out
          if [ ${{ inputs.kernel-url }} != false ]; then
