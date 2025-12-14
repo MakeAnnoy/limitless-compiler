@@ -187,7 +187,7 @@ jobs:
          elif [ ${{ inputs.kernelsu }} == q ]; then
             curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs
          elif [ ${{ inputs.kernelsu }} == r ]; then
-            curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/next-time/kernel/setup.sh" | bash -s next-time
+            curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s main
          elif [ ${{ inputs.kernelsu }} != false ]; then
             ${{ inputs.kernelsu }}
          fi
