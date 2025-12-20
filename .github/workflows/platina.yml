@@ -190,6 +190,8 @@ jobs:
             curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs
          elif [ ${{ inputs.kernelsu }} == r ]; then
             curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s main
+         elif [ ${{ inputs.kernelsu }} == rs ]; then
+            curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s susfs-rksu-master
          elif [ ${{ inputs.kernelsu }} != false ]; then
             ${{ inputs.kernelsu }}
          fi
