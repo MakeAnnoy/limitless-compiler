@@ -181,7 +181,7 @@ jobs:
          elif [ ${{ inputs.kernelsu }} == next ]; then
             curl https://raw.githubusercontent.com/ThRE-Team/Next-v3/refs/heads/main/setup.sh | bash
          elif [ ${{ inputs.kernelsu }} == legacy ]; then
-            curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/legacy/kernel/setup.sh" | bash -s legacy
+            curl -LSs https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/legacy/kernel/setup.sh | bash -s legacy
          elif [ ${{ inputs.kernelsu }} == q ]; then
             curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs
          elif [ ${{ inputs.kernelsu }} == r ]; then
