@@ -25,7 +25,7 @@ on:
         type: string
       kernel-url:
         description: 'Kernel-url'
-        default: 'https://github.com/FirmanBell/Loneliness_susfs4ksu.git'
+        default: 'https://github.com/FirmanBell/kernel_xiaomi_platina.git'
         required: true
         type: string
       kernel-branch:
@@ -40,7 +40,7 @@ on:
         type: string
       kernelsu:
         description: 'KernelSU | false for disable'
-        default: 'next'
+        default: 'legacy'
         required: true
         type: string
       disable-lto:
