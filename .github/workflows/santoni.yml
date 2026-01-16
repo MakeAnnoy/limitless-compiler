@@ -10,7 +10,7 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.9.234-perf⁺'
+        default: '4.9.228-perf⁺'
         required: true
         type: string
       compiler:
@@ -40,7 +40,7 @@ on:
         type: string
       kernelsu:
         description: 'KernelSU | false for disable'
-        default: 'q'
+        default: 'legacy'
         required: true
         type: string
       disable-lto:
@@ -180,6 +180,8 @@ jobs:
             curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.7.6
          elif [ ${{ inputs.kernelsu }} == next ]; then   
             curl https://raw.githubusercontent.com/ThRE-Team/Next-v3/refs/heads/main/setup.sh | bash
+         elif [ ${{ inputs.kernelsu }} == legacy ]; then
+            curl -LSs https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/legacy/kernel/setup.sh | bash -s legacy
          elif [ ${{ inputs.kernelsu }} == 111 ]; then
             curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s v1.1.1
          elif [ ${{ inputs.kernelsu }} == 3 ]; then
