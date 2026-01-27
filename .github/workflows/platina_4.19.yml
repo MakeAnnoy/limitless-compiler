@@ -25,12 +25,12 @@ on:
         type: string
       kernel-url:
         description: 'Kernel-url'
-        default: 'https://github.com/FirmanBell/kernel_xiaomi_sdm660.git'
+        default: 'https://github.com/FirmanBell/android_kernel_xiaomi_southwest-4.19.git'
         required: true
         type: string
       kernel-branch:
         description: 'Kernel-branch'
-        default: 'main'
+        default: 'main-dynamic'
         required: true
         type: string
       kernel-config:
