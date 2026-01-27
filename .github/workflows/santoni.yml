@@ -179,9 +179,9 @@ jobs:
          if [ ${{ inputs.kernelsu }} == ksu ]; then
             curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.7.6
          elif [ ${{ inputs.kernelsu }} == next ]; then   
-            curl https://raw.githubusercontent.com/ThRE-Team/Next-v3/refs/heads/main/setup.sh | bash
+            curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s dev
          elif [ ${{ inputs.kernelsu }} == legacy ]; then
-            curl -LSs https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/legacy/kernel/setup.sh | bash -s legacy
+            curl -LSs https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/main/kernel/setup.sh | bash -s main
          elif [ ${{ inputs.kernelsu }} == 111 ]; then
             curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s v1.1.1
          elif [ ${{ inputs.kernelsu }} == 3 ]; then
