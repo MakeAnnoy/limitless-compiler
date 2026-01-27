@@ -196,10 +196,10 @@ jobs:
          mkdir -p -v out
          if [ ${{ inputs.kernel-url }} != false ]; then
             cd kernel-dir
-            COMMAND="make -j$(nproc) O=out ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm STRIP=llvm-strip OBJCOPY=llvm-objcopy CROSS_COMPILE="aarch64-linux-gnu-"
+            COMMAND="make -j$(nproc --all) ${{ inputs.kernel-config }} ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm STRIP=llvm-strip OBJCOPY=llvm-objcopy O=../out all"
          fi
          if [ ${{ inputs.kernel-url }} == false ]; then
-            COMMAND="make -j$(nproc) O=out ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm STRIP=llvm-strip OBJCOPY=llvm-objcopy CROSS_COMPILE="aarch64-linux-gnu-"
+            COMMAND="make -j$(nproc --all) ${{ inputs.kernel-config }} ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm STRIP=llvm-strip OBJCOPY=llvm-objcopy O=out all"
          fi
          if [ ${{ inputs.aosp-clang }} == false ]; then
             echo "aosp-clang disable"
