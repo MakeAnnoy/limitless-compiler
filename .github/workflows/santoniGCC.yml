@@ -10,7 +10,7 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.9.258-perf⁺'
+        default: '4.9.228-perf⁺(luuvy)'
         required: true
         type: string
       compiler:
@@ -30,7 +30,7 @@ on:
         type: string
       kernel-branch:
         description: 'Kernel-branch'
-        default: '258'
+        default: 'main'
         required: true
         type: string
       kernel-config:
@@ -40,7 +40,7 @@ on:
         type: string
       kernelsu:
         description: 'KernelSU | false for disable'
-        default: 'q'
+        default: 'rs'
         required: true
         type: string
       disable-lto:
