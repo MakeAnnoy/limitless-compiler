@@ -1,0 +1,68 @@
+name: Build Mithorium mi8937
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Cleanup Environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y bc bison build-essential flex gcc-aarch64-linux-gnu \
+        gcc-arm-linux-gnueabi libssl-dev libelf-dev git-core libncurses5-dev \
+        libncurses5 ccache
+        
+    - name: Clone Mithorium Kernel (4.19)
+      run: |
+        git clone --depth=1 https://gitlab.com/androidsantoni/mithorium/kernel/4.19.git -b 4.19 kernel
+        
+    - name: Pull Proton Clang
+      run: |
+        git clone --depth=1 https://github.com/kdrag0n/proton-clang.git clang
+
+    - name: Build Kernel
+      working-directory: kernel
+      run: |
+        # Setup Path
+        export PATH=$(pwd)/../clang/bin:$PATH
+        export ARCH=arm64
+        export SUBARCH=arm64
+        export KBUILD_BUILD_USER="linex"
+        export KBUILD_BUILD_HOST="Project"
+        
+        # 1. Pilih Defconfig
+        make O=out ARCH=arm64 vendor/mi8937_defconfig
+        
+        # 2. Proses Kompilasi
+        make -j$(nproc --all) O=out \
+                      ARCH=arm64 \
+                      CC=clang \
+                      CLANG_TRIPLE=aarch64-linux-gnu- \
+                      CROSS_COMPILE=aarch64-linux-gnu- \
+                      CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+                      LD=ld.lld \
+                      AR=llvm-ar \
+                      NM=llvm-nm \
+                      OBJCOPY=llvm-objcopy \
+                      OBJDUMP=llvm-objdump \
+                      STRIP=llvm-strip
+
+    - name: Check Output
+      run: |
+        if [ -f kernel/out/arch/arm64/boot/Image.gz-dtb ]; then
+            echo "Build Sukses!"
+        else
+            echo "Build Gagal, file tidak ditemukan."
+            exit 1
+        fi
+
+    - name: Upload Image & DTB
+      uses: actions/upload-artifact@v4
+      with:
+        name: Mithorium-mi8937-ThRE
+        path: |
+          kernel/out/arch/arm64/boot/Image.gz-dtb
+          kernel/out/arch/arm64/boot/dtbo.img
