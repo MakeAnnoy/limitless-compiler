@@ -1,5 +1,5 @@
 # Annoy Project
-name: santoniGCC
+name: platina_ext
 on:
   workflow_dispatch:
     inputs:
@@ -10,37 +10,37 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.9.228-perf⁺(luuvy)'
+        default: '4.4.302-Loneliness'
         required: true
         type: string
       compiler:
         description: 'Compiler | gcc|clang|llvm'
-        default: 'gcc'
+        default: 'clang'
         required: true
         type: string
       aosp-clang:
         description: 'Clang | false for disable'
-        default: 'false'
+        default: '20'
         required: true
         type: string
       kernel-url:
         description: 'Kernel-url'
-        default: 'https://github.com/FirmanBell/L_check_msm-4.9.git'
+        default: 'https://github.com/FirmanBell/kernel_xiaomi_platina.git'
         required: true
         type: string
       kernel-branch:
         description: 'Kernel-branch'
-        default: 'main'
+        default: 'hookless'
         required: true
         type: string
       kernel-config:
         description: 'Kernel-config'
-        default: 'santoni_treble_defconfig'
+        default: 'platina_defconfig'
         required: true
         type: string
       kernelsu:
         description: 'KernelSU | false for disable'
-        default: 'rs'
+        default: 'hookless'
         required: true
         type: string
       disable-lto:
@@ -50,7 +50,7 @@ on:
         type: string
       AK3:
         description: 'AnyKernel3'
-        default: 'https://github.com/MakeAnnoy/AnyKernel3.git'
+        default: 'https://github.com/FirmanBell/AnyKernel3.git'
         required: true
         type: string
 jobs:
@@ -133,6 +133,8 @@ jobs:
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r547379.tar.gz          
             elif [ ${{ inputs.aosp-clang }} == "21" ]; then
                 aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/0998f421320ae02fddabec8a78b91bf7620159f6/clang-r563880.tar.gz         
+            elif [ ${{ inputs.aosp-clang }} == "22" ]; then
+                aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/105aba85d97a53d364585ca755752dae054b49e8/clang-r584948b.tar.gz
             elif [ ${{ inputs.aosp-clang }} != false ]; then
                 aria2c -o aosp-clang.tar.gz ${{ inputs.aosp-clang }}
             fi
@@ -177,17 +179,11 @@ jobs:
          fi
          rm -rf KernelSU
          if [ ${{ inputs.kernelsu }} == ksu ]; then
-            curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.7.6
+            curl -LSs "https://raw.githubusercontent.com/backslashxx/KernelSU/master/kernel/setup.sh" | bash -s master
          elif [ ${{ inputs.kernelsu }} == next ]; then
-            curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s dev
-         elif [ ${{ inputs.kernelsu }} == legacy ]; then
-            curl -LSs https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/main/kernel/setup.sh | bash -s main
-         elif [ ${{ inputs.kernelsu }} == q ]; then
-            curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs
-         elif [ ${{ inputs.kernelsu }} == r ]; then
-            curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s main
-         elif [ ${{ inputs.kernelsu }} == rs ]; then
-            curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU/main/kernel/setup.sh" | bash -s main
+            curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s legacy
+         elif [ ${{ inputs.kernelsu }} == hookless ]; then   
+            curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/stable/kernel/setup.sh" | bash -s hookless
          elif [ ${{ inputs.kernelsu }} != false ]; then
             ${{ inputs.kernelsu }}
          fi
