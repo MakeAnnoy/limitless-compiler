@@ -40,7 +40,7 @@ on:
         type: string
       kernelsu:
         description: 'KernelSU | false for disable'
-        default: 'legacy'
+        default: '3'
         required: true
         type: string
       disable-lto:
