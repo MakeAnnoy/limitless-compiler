@@ -35,7 +35,7 @@ on:
         type: string
       kernel-config:
         description: 'Kernel-config'
-        default: 'platina_defconfig'
+        default: 'vendor/platina_defconfig'
         required: true
         type: string
       kernelsu:
