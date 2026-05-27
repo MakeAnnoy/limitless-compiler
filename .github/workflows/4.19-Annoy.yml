@@ -1,5 +1,5 @@
 # Annoy Project
-name: 4.19-ubuntu
+name: 4.19-Annoy
 on:
   workflow_dispatch:
     inputs:
@@ -15,22 +15,22 @@ on:
         type: string
       compiler:
         description: 'Compiler | gcc|clang|llvm'
-        default: 'gcc'
+        default: 'clang'
         required: true
         type: string
       aosp-clang:
         description: 'Clang | false for disable'
-        default: 'false'
+        default: '21'
         required: true
         type: string
       kernel-url:
         description: 'Kernel-url'
-        default: 'https://github.com/FirmanBell/kernel_xiaomi_sdm660.git'
+        default: 'https://github.com/MakeAnnoy/kernel_xiaomi_sdm660.git'
         required: true
         type: string
       kernel-branch:
         description: 'Kernel-branch'
-        default: 'hookless'
+        default: 'experimental'
         required: true
         type: string
       kernel-config:
@@ -40,7 +40,7 @@ on:
         type: string
       kernelsu:
         description: 'KernelSU | false for disable'
-        default: 'hookless'
+        default: '3'
         required: true
         type: string
       disable-lto:
