@@ -10,7 +10,7 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.19.325-Luuvy-EspressoV1'
+        default: '4.19.325-Loneliness'
         required: true
         type: string
       compiler:
@@ -35,7 +35,7 @@ on:
         type: string
       kernel-config:
         description: 'Kernel-config'
-        default: 'vendor/msm8937-perf_defconfig vendor/msm8937-legacy.config vendor/common.config vendor/xiaomi/msm8937/common.config vendor/xiaomi/msm8937/mi8937.config vendor/debugfs.config vendor/feature/android-12.config vendor/feature/erofs.config vendor/feature/exfat.config vendor/feature/ntfs.config vendor/feature/lmkd.config vendor/feature/wireguard.config vendor/feature/ksu_static_hooks.config vendor/feature/custom_kernel.config'
+        default: 'vendor/msm8937-perf_defconfig vendor/msm8937-legacy.config vendor/common.config vendor/xiaomi/msm8937/common.config vendor/xiaomi/msm8937/mi8937.config vendor/debugfs.config vendor/feature/android-12.config vendor/feature/erofs.config vendor/feature/exfat.config vendor/feature/ntfs.config vendor/feature/lmkd.config vendor/feature/wireguard.config vendor/feature/custom.config'
         required: true
         type: string
       kernelsu:
@@ -50,7 +50,7 @@ on:
         type: string
       AK3:
         description: 'AnyKernel3'
-        default: 'https://github.com/MakeAnnoy/AnyKernel3.git'
+        default: 'https://github.com/MakeAnnoy/AnyKernel3.git -b mithorium'
         required: true
         type: string
 jobs:
