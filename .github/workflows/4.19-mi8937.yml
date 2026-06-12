@@ -10,7 +10,7 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.19.325-Loneliness'
+        default: '4.19.325-perf'
         required: true
         type: string
       compiler:
