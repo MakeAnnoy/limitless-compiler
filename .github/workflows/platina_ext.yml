@@ -10,7 +10,7 @@ on:
         type: string
       name:
         description: 'Name'
-        default: '4.4.302-perf-vic'
+        default: '4.4.302-Loneliness'
         required: true
         type: string
       compiler:
@@ -30,7 +30,7 @@ on:
         type: string
       kernel-branch:
         description: 'Kernel-branch'
-        default: 'andrey'
+        default: '16.2-susfs'
         required: true
         type: string
       kernel-config:
@@ -40,7 +40,7 @@ on:
         type: string
       kernelsu:
         description: 'KernelSU | false for disable'
-        default: '3'
+        default: 'susfs'
         required: true
         type: string
       disable-lto:
@@ -178,14 +178,10 @@ jobs:
             fi
          fi
          rm -rf KernelSU
-         if [ ${{ inputs.kernelsu }} == ksu ]; then
-            curl -LSs "https://raw.githubusercontent.com/backslashxx/KernelSU/master/kernel/setup.sh" | bash -s master
-         elif [ ${{ inputs.kernelsu }} == next ]; then
-            curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s legacy
-         elif [ ${{ inputs.kernelsu }} == hookless ]; then   
-            curl -LSs "https://raw.githubusercontent.com/FirmanBell/KernelSU-Next/stable/kernel/setup.sh" | bash -s hookless
-         elif [ ${{ inputs.kernelsu }} == 3 ]; then
-            curl -LSs https://raw.githubusercontent.com/ThRE-Team/KernelSU-Next/main/kernel/setup.sh | bash -s v3.2.0
+         if [ ${{ inputs.kernelsu }} == main ]; then
+            curl -LSs "https://raw.githubusercontent.com/Lolipop-16/KernelSU/refs/heads/main/kernel/setup.sh" | bash -s main
+         elif [ ${{ inputs.kernelsu }} == susfs ]; then
+            curl -LSs "https://raw.githubusercontent.com/Lolipop-16/KernelSU/refs/heads/main-susfs/kernel/setup.sh" | bash -s main-susfs
          elif [ ${{ inputs.kernelsu }} != false ]; then
             ${{ inputs.kernelsu }}
          fi
